@@ -4,6 +4,7 @@
 
 本发布仓库的首个版本，提供当前 FMusic HarmonyOS 安装包。
 
+- 同时提供签名 HAP 安装包与 APP 发布包，并附两种文件的 SHA-256 校验值。
 - 提供音乐资料库、沉浸式歌词动画、主题和背景效果。
 - 支持本地音频、同名歌词和封面导入。
 - 提供多平台音乐服务入口与服务连接设置。
@@ -12,8 +13,8 @@
 
 版本信息：`1.2.1`（`1020001`），包名 `com.bogdan.folia`。
 
-发布检查：Release 签名验证通过；包内 `harmony.html` 存在，1963 个 Web 资源与本地生成产物逐字节一致；未包含 source map。
+发布检查：HAP 与 APP 的 Release 签名验证通过；包内 `harmony.html` 存在，1963 个 Web 资源与本地生成产物逐字节一致；APP 与 HAP 的应用代码及资源逐字节一致；未包含 source map。
 
 以上为安装包检查结果，各设备、真实账号及在线服务的运行情况仍以实际使用为准。
 
-[下载 1.2.1](https://github.com/abc123-hubish/Harmony-FMusic/releases/tag/v1.2.1)
+[下载 1.2.1](https://github.com/abc123-hubish/HO-FMusic-Folia/releases/tag/v1.2.1)

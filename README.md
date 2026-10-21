@@ -1,17 +1,17 @@
 <div align="center">
   <img src="assets/app-icon.png" width="112" alt="FMusic 应用图标" />
-  <h1>FMusic · HarmonyOS</h1>
-  <p>在鸿蒙设备上，享受音乐与沉浸式歌词。</p>
+  <h1>HO-FMusic-Folia</h1>
+  <p>FMusic · HarmonyOS — 在鸿蒙设备上，享受音乐与沉浸式歌词。</p>
   <p>
-    <a href="https://github.com/abc123-hubish/Harmony-FMusic/releases/latest">下载最新版本</a> ·
+    <a href="https://github.com/abc123-hubish/HO-FMusic-Folia/releases/latest">下载最新版本</a> ·
     <a href="CHANGELOG.md">更新记录</a> ·
-    <a href="https://github.com/abc123-hubish/Harmony-FMusic/issues">问题反馈</a>
+    <a href="https://github.com/abc123-hubish/HO-FMusic-Folia/issues">问题反馈</a>
   </p>
 </div>
 
 FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的非官方 HarmonyOS 音乐播放器，将音乐资料库、全屏歌词动画与鸿蒙系统能力结合，支持本地音乐和多平台音乐服务。
 
-本仓库用于应用介绍、版本说明和安装包发布，仅维护公开文档、图标与许可说明。安装包请前往 **[Releases](https://github.com/abc123-hubish/Harmony-FMusic/releases)** 下载。
+本仓库用于应用介绍、版本说明和安装包发布，仅维护公开文档、图标与许可说明。安装包请前往 **[Releases](https://github.com/abc123-hubish/HO-FMusic-Folia/releases)** 下载。
 
 ## 功能亮点
 
@@ -51,12 +51,13 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 | 项目 | 说明 |
 | --- | --- |
 | 系统要求 | HarmonyOS 6.1.0（API 23）及以上，以设备实际兼容情况为准 |
-| 安装包 | `FMusic-HarmonyOS-1.2.1-signed.hap` |
+| HAP 安装包 | `FMusic-HarmonyOS-1.2.1-signed.hap`，用于设备安装 |
+| APP 发布包 | `FMusic-HarmonyOS-1.2.1-signed.app`，用于需要 APP 归档的分发或上架流程 |
 | 包名 | `com.bogdan.folia` |
 | 签名 | Release 签名 |
-| 文件校验 | 同一 Release 附带 `SHA256SUMS.txt` |
+| 文件校验 | 同一 Release 附带 `SHA256SUMS.txt`，包含 HAP 与 APP 的 SHA-256 |
 
-1. 打开 [最新版本](https://github.com/abc123-hubish/Harmony-FMusic/releases/latest)，下载 Assets 中的 `.hap` 文件。
+1. 打开 [最新版本](https://github.com/abc123-hubish/HO-FMusic-Folia/releases/latest)，下载 Assets 中的 `.hap` 文件。
 2. 使用设备支持的 HAP 安装方式安装。已配置开发工具并连接设备时，可执行：
 
    ```sh
@@ -65,9 +66,11 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 3. 启动 FMusic，导入本地音乐，或按需配置并登录在线音乐服务。
 
-如果设备提示签名或安装权限错误，请在 [Issues](https://github.com/abc123-hubish/Harmony-FMusic/issues) 中提供完整提示、设备型号和系统版本。
+如果设备提示签名或安装权限错误，请在 [Issues](https://github.com/abc123-hubish/HO-FMusic-Folia/issues) 中提供完整提示、设备型号和系统版本。
 
 GitHub 自动生成的 **Source code (zip / tar.gz)** 仅为本发布仓库的文档快照。安装应用请下载 `.hap` 附件。
+
+需要 `.app` 格式时，请下载同一 Release 中的 APP 发布包；该归档不使用上面的 HAP 安装命令直接安装。
 
 ## 使用说明
 
@@ -81,7 +84,7 @@ GitHub 自动生成的 **Source code (zip / tar.gz)** 仅为本发布仓库的�
 
 ## 问题反馈
 
-请通过 [Issues](https://github.com/abc123-hubish/Harmony-FMusic/issues) 提交问题，并尽量包含：
+请通过 [Issues](https://github.com/abc123-hubish/HO-FMusic-Folia/issues) 提交问题，并尽量包含：
 
 - 应用版本、设备型号、HarmonyOS 版本。
 - 复现步骤、预期结果和实际结果。
