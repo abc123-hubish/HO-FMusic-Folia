@@ -52,10 +52,10 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 | --- | --- |
 | 系统要求 | HarmonyOS 6.1.0（API 23）及以上，以设备实际兼容情况为准 |
 | HAP 安装包 | `FMusic-HarmonyOS-1.2.1-signed.hap`，用于设备安装 |
-| APP 发布包 | `FMusic-HarmonyOS-1.2.1-signed.app`，用于需要 APP 归档的分发或上架流程 |
+| APP 发布包 | 下载 `FMusic-HarmonyOS-1.2.1-APP.zip`，解压获得 `FMusic-HarmonyOS-1.2.1-signed.app` |
 | 包名 | `com.bogdan.folia` |
 | 签名 | Release 签名 |
-| 文件校验 | 同一 Release 附带 `SHA256SUMS.txt`，包含 HAP 与 APP 的 SHA-256 |
+| 文件校验 | Release 附带 `SHA256SUMS.txt`，校验 HAP 与 APP ZIP；ZIP 内另附原始 APP 的校验文件 |
 
 1. 打开 [最新版本](https://github.com/abc123-hubish/HO-FMusic-Folia/releases/latest)，下载 Assets 中的 `.hap` 文件。
 2. 使用设备支持的 HAP 安装方式安装。已配置开发工具并连接设备时，可执行：
@@ -70,7 +70,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 GitHub 自动生成的 **Source code (zip / tar.gz)** 仅为本发布仓库的文档快照。安装应用请下载 `.hap` 附件。
 
-需要 `.app` 格式时，请下载同一 Release 中的 APP 发布包；该归档不使用上面的 HAP 安装命令直接安装。
+需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-1.2.1-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
 
 ## 使用说明
 
