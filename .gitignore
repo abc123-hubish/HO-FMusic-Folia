@@ -1,0 +1,26 @@
+# This checkout only tracks public release documentation and artwork.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/CHANGELOG.md
+!/LICENSE
+!/THIRD-PARTY-NOTICES.md
+!/assets/
+/assets/*
+!/assets/app-icon.png
+!/assets/screenshots/
+/assets/screenshots/*
+!/assets/screenshots/library-portrait.jpg
+!/assets/screenshots/lyrics-landscape.png
+!/assets/screenshots/online-services.png
+!/licenses/
+/licenses/*
+!/licenses/music/
+/licenses/music/*
+!/licenses/music/*-LICENSE
+!/licenses/music/LICENSE
+!/licenses/bodian/
+/licenses/bodian/*
+!/licenses/bodian/*-LICENSE
+!/licenses/bodian/bodian-NOTICE
