@@ -46,13 +46,13 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 ## 下载与安装
 
-当前发布版本：**1.2.1**。
+当前发布版本：**1.2.2**。本次更新带来屏幕常亮、播放失败提示、QQ 音乐能力补全，以及设置面板和歌词布局优化，详见 [更新记录](CHANGELOG.md)。
 
 | 项目 | 说明 |
 | --- | --- |
 | 系统要求 | HarmonyOS 6.1.0（API 23）及以上，以设备实际兼容情况为准 |
-| HAP 安装包 | `FMusic-HarmonyOS-1.2.1-signed.hap`，用于设备安装 |
-| APP 发布包 | 下载 `FMusic-HarmonyOS-1.2.1-APP.zip`，解压获得 `FMusic-HarmonyOS-1.2.1-signed.app` |
+| HAP 安装包 | `FMusic-HarmonyOS-1.2.2-signed.hap`，用于设备安装 |
+| APP 发布包 | 下载 `FMusic-HarmonyOS-1.2.2-APP.zip`，解压获得 `FMusic-HarmonyOS-1.2.2-signed.app` |
 | 包名 | `com.bogdan.folia` |
 | 签名 | Release 签名 |
 | 文件校验 | Release 附带 `SHA256SUMS.txt`，校验 HAP 与 APP ZIP；ZIP 内另附原始 APP 的校验文件 |
@@ -61,7 +61,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 2. 使用设备支持的 HAP 安装方式安装。已配置开发工具并连接设备时，可执行：
 
    ```sh
-   hdc install -r FMusic-HarmonyOS-1.2.1-signed.hap
+   hdc install -r FMusic-HarmonyOS-1.2.2-signed.hap
    ```
 
 3. 启动 FMusic，导入本地音乐，或按需配置并登录在线音乐服务。
@@ -70,13 +70,14 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 GitHub 自动生成的 **Source code (zip / tar.gz)** 仅为本发布仓库的文档快照。安装应用请下载 `.hap` 附件。
 
-需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-1.2.1-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
+需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-1.2.2-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
 
 ## 使用说明
 
 - **导入音乐**：在资料库的本地音乐入口选择音频文件，可同时导入同名歌词和封面。
 - **服务连接**：在「设置 → 集成 → 鸿蒙服务连接」中查看或修改在线服务配置；本地音乐无需服务端。
 - **横竖屏**：在「设置 → 通用 → 开启竖屏」中切换，选择会在重启后保留。
+- **屏幕常亮**：在「设置 → 通用 → 屏幕设置」中开启「屏幕不熄屏」，仅在应用前台显示时生效。
 - **AI 主题**：按需配置自己的 AI 服务地址、模型与密钥；使用前请了解所选服务的调用费用。
 - **平台权限**：在线音乐的播放、账号权限与地区限制由对应平台决定，登录不会改变平台原有权限。
 
