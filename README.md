@@ -15,7 +15,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 ## 功能亮点
 
-- **沉浸式歌词**：多种全屏歌词动画、逐字歌词与动态背景，让歌词成为听歌体验的一部分。
+- **沉浸式歌词**：包含全新「花火」在内的多种全屏歌词动画、逐字歌词与动态背景，花火支持画质和视觉效果调节。
 - **本地音乐**：通过系统文件选择器导入音频，支持同名歌词与封面，导入内容可在重启后继续读取。
 - **多平台服务**：提供网易云音乐、QQ 音乐、酷狗音乐、波点音乐等入口，支持搜索、歌单和账号登录；具体能力取决于平台及服务配置。
 - **个性化外观**：主题、封面配色与 AI 主题，支持配置自己的兼容 AI 服务。
@@ -46,13 +46,13 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 ## 下载与安装
 
-当前发布版本：**1.2.2**。本次更新带来屏幕常亮、播放失败提示、QQ 音乐能力补全，以及设置面板和歌词布局优化，详见 [更新记录](CHANGELOG.md)。
+当前发布版本：**1.2.3**。本次更新新增花火歌词动画、鸿蒙应用接续和 QQ 试听片段支持，并修复试听歌词同步与 Bravais 首页搜索，详见 [更新记录](CHANGELOG.md)。
 
 | 项目 | 说明 |
 | --- | --- |
 | 系统要求 | HarmonyOS 6.1.0（API 23）及以上，以设备实际兼容情况为准 |
-| HAP 安装包 | `FMusic-HarmonyOS-1.2.2-signed.hap`，用于设备安装 |
-| APP 发布包 | 下载 `FMusic-HarmonyOS-1.2.2-APP.zip`，解压获得 `FMusic-HarmonyOS-1.2.2-signed.app` |
+| HAP 安装包 | `FMusic-HarmonyOS-1.2.3-signed.hap`，用于设备安装 |
+| APP 发布包 | 下载 `FMusic-HarmonyOS-1.2.3-APP.zip`，解压获得 `FMusic-HarmonyOS-1.2.3-signed.app` |
 | 包名 | `com.bogdan.folia` |
 | 签名 | Release 签名 |
 | 文件校验 | Release 附带 `SHA256SUMS.txt`，校验 HAP 与 APP ZIP；ZIP 内另附原始 APP 的校验文件 |
@@ -61,7 +61,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 2. 使用设备支持的 HAP 安装方式安装。已配置开发工具并连接设备时，可执行：
 
    ```sh
-   hdc install -r FMusic-HarmonyOS-1.2.2-signed.hap
+   hdc install -r FMusic-HarmonyOS-1.2.3-signed.hap
    ```
 
 3. 启动 FMusic，导入本地音乐，或按需配置并登录在线音乐服务。
@@ -70,7 +70,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 GitHub 自动生成的 **Source code (zip / tar.gz)** 仅为本发布仓库的文档快照。安装应用请下载 `.hap` 附件。
 
-需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-1.2.2-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
+需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-1.2.3-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
 
 ## 使用说明
 
@@ -79,6 +79,8 @@ GitHub 自动生成的 **Source code (zip / tar.gz)** 仅为本发布仓库的�
 - **横竖屏**：在「设置 → 通用 → 开启竖屏」中切换，选择会在重启后保留。
 - **屏幕常亮**：在「设置 → 通用 → 屏幕设置」中开启「屏幕不熄屏」，仅在应用前台显示时生效。
 - **AI 主题**：按需配置自己的 AI 服务地址、模型与密钥；使用前请了解所选服务的调用费用。
+- **应用接续**：双端安装支持接续的版本、登录同一华为账号并开启系统「多设备协同 → 接续」后，可通过系统接续入口迁移播放状态；本地音频需提前导入目标设备，实际双设备体验尚待实机验证。
+- **QQ 试听**：仅播放平台实际提供的试听片段，并显示试听提示；歌词会按片段起点同步，试听能力不改变完整歌曲的播放权限。
 - **平台权限**：在线音乐的播放、账号权限与地区限制由对应平台决定，登录不会改变平台原有权限。
 
 本项目持续进行鸿蒙适配；原项目中依赖 Electron、桌面插件、FFmpeg 或桌面模型的功能不保证全部可用。各设备上的界面和后台播放效果以实际使用为准。
