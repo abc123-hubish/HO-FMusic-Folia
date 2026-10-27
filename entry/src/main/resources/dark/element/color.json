@@ -1,0 +1,14 @@
+{
+  "color": [
+    { "name": "page", "value": "#151A20" },
+    { "name": "surface", "value": "#222A33" },
+    { "name": "soft_surface", "value": "#2A3640" },
+    { "name": "text", "value": "#ECF1F5" },
+    { "name": "muted", "value": "#9AA8B5" },
+    { "name": "divider", "value": "#303A46" },
+    {
+      "name": "start_window_background",
+      "value": "#000000"
+    }
+  ]
+}

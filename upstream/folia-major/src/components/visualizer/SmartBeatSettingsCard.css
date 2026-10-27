@@ -1,0 +1,52 @@
+/* src/components/visualizer/SmartBeatSettingsCard.css
+   Native keyboard/touch range semantics with a theme-coloured track and a generous hit area. */
+.smart-beat-range {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 32px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    touch-action: pan-y;
+}
+.smart-beat-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--st-accent) var(--beat-fill), var(--st-track) var(--beat-fill));
+}
+.smart-beat-range::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -6px;
+    border-radius: 50%;
+    background: var(--st-knob);
+    box-shadow: 0 0 0 1px var(--st-line2), 0 1px 3px rgb(0 0 0 / 20%);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.smart-beat-range::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--st-track);
+}
+.smart-beat-range::-moz-range-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--st-accent);
+}
+.smart-beat-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--st-line2);
+    border-radius: 50%;
+    background: var(--st-knob);
+}
+.smart-beat-range:focus-visible { outline: none; }
+.smart-beat-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--st-card), 0 0 0 4px var(--st-accent); }
+.smart-beat-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 2px var(--st-card), 0 0 0 4px var(--st-accent); }
+.smart-beat-range:enabled:active::-webkit-slider-thumb { transform: scale(1.15); }
+.smart-beat-range:disabled { cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) {
+    .smart-beat-range::-webkit-slider-thumb { transition: none; }
+}

@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/whycfawa/folia-android",
+  "commit": "f63ba1da8a2cca0dd96c8da27b4192ee56f2ba5f",
+  "files": {
+    "api/cookies.js": "488e0caf85acaf8d5a108cefd501e7929ee47dcc5aeeab882179d2ca29e5d668",
+    "api/folia.js": "c4f8ade40fa20240f5845f6e390e0d28884abe0ba53e07453f0cadff9aed3cf4",
+    "api/kugou.js": "936da50dcc589a8a13385c1faa8b4163d511e17ca18d5807fbf92d1fc2f28895",
+    "api/libraryTrace.js": "ef408f250a44c413c509b43ed859eadaae22072c1dbed196ceb28a2831838c2d",
+    "api/qq-login-qr.js": "5a913270b57aeb3139da11a0f7a3e7cd3f82ab924da993f3acf63945efd48b8d",
+    "api/qq-wechat-login.js": "7c89a8e1942614c94ea7c152cdc24fc27e4a37188b7a870b813a8a44f5ac2d40",
+    "api/qq.js": "019d3b2a947e323c80e8e97c3f50f28aa398e5ec065c6298c885362525ee240a",
+    "api/qrImage.js": "803d3b3a763752dca3e3c1ad19f97b27de9e12718c785382e20c4c2c049ffc34",
+    "api/qrLoginTrace.js": "76db35350b9a754e960266c76082283a728841464b8b8765c15c9bf392f414ad",
+    "api/setCookieHeaders.js": "789d24e1508999a33b388da452be76da57ab0fe0d3009f19b4579717d479d51f",
+    "api/weapi.js": "a9ea4ff7cc385f1cffcb6d226feb971e3cba193a671d915744c870d6a4a23f11",
+    "LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+    "THIRD-PARTY-NOTICES.md": "df4cd79e55cda6a469d0ee5fea02afdfc0be4bece3f5d7573adbc17076ece192",
+    "vendor/crypto-es.mjs": "e0c257a95e602b3042bfe62f73f3bc3c2225c490b2d839de6cd4a839f8aac11b",
+    "utils/lyrics/providers/krcDecrypt.ts": "629d2ad85fe79b910e54c79bd026d27dd3f168a28d4a6c85ae6be3a2b3cf59c0",
+    "api/qq-native-login.js": "a69b281c7072fdef2b22dbb6271872311201fa7ae7e1a7b595e44825177ccfc2",
+    "api/qq-mqtt.js": "699b71c7358db3dcbe73edb2ddaf056ba8331eadfaf16604eefb0bdece6399c6"
+  }
+}

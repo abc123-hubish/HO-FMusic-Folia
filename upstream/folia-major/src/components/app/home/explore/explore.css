@@ -1,0 +1,175 @@
+/* Keep the scrolling page under the floating controls, with clearance only after its last entry. */
+[data-explore-content] {
+    padding-bottom: calc(96px / var(--ex-content-scale, 1));
+}
+
+/* Scale the whole content, including typography and gaps, on HarmonyOS phones in either orientation.
+   The scroll viewport and floating player/account controls retain their original size and coordinates. */
+@media (max-width: 599px), (orientation: landscape) and (max-width: 1100px) and (max-height: 600px) {
+    html[data-harmony]:not([data-harmony-window]) [data-explore-content],
+    html[data-harmony]:not([data-harmony-window]) [data-explore-controls] {
+        --ex-content-scale: 0.85;
+        zoom: var(--ex-content-scale);
+    }
+}
+
+/* 探索页：“换一批”时旧内容留在原地等新的，呼吸般地一明一暗表示正在读。
+   其余的移动都在 src/components/app/home/explore/exploreMotion.ts。 */
+@keyframes explore-waiting {
+    from { opacity: 1; }
+    to { opacity: 0.72; }
+}
+
+.explore-waiting > * {
+    animation: explore-waiting 900ms ease-in-out 300ms infinite alternate;
+}
+
+:root[data-reduce-motion~='uiMicroMotion'] .explore-waiting > *,
+:root[data-reduce-motion~='uiMicroMotion'] [data-explore-ghost] .animate-pulse {
+    animation: none;
+}
+
+/* 探索页：指针指着一个条目时，它的图片朝指针倾斜，一道高光跟着指针走。
+   指针在图片上的位置由 exploreTilt.ts 每帧写到 [data-explore-tilt] 上：--ex-rx / --ex-ry 是角度，
+   --ex-px / --ex-py 是 -1…1（左、上为负）。这里只负责画。
+   只有正在跟指针的那一张带 transform：不动的图片不该各占一个合成层。 */
+[data-explore-tilt] {
+    /* 指针离开后慢慢回正。抬起（translate）和原来一样快。 */
+    transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1), translate 300ms ease-out;
+}
+
+[data-explore-tilt][data-explore-tilting] {
+    transform: perspective(900px) rotateX(var(--ex-rx, 0deg)) rotateY(var(--ex-ry, 0deg));
+    /* 跟着指针时只留很短的过渡，抹平两帧之间的跳动。 */
+    transition-duration: 140ms, 300ms;
+}
+
+.explore-sheen {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle at calc(50% + var(--ex-px, 0) * 50%) calc(50% + var(--ex-py, 0) * 50%), rgb(255 255 255 / 0.2), transparent 60%);
+    transition: opacity 300ms ease-out;
+}
+
+[data-explore-tilting] .explore-sheen {
+    opacity: 1;
+}
+
+/* 图片上的播放钮比图片“高”一层：图片倾斜时它朝指针那边挪一点，不倾斜时回到原位。 */
+.explore-float {
+    transition: translate 140ms ease-out;
+}
+
+[data-explore-tilting] .explore-float {
+    translate: calc(var(--ex-px, 0) * 6px) calc(var(--ex-py, 0) * 6px);
+}
+
+/* 专辑封面后面的唱片：纹路、两道反光、中间的标签。滑出和转动写在元素自己的类名上。 */
+.explore-record {
+    background:
+        radial-gradient(circle, #0c0c0d 0 2.5%, color-mix(in srgb, var(--text-primary) 55%, #0c0c0d) 3% 15%, transparent 15.5%),
+        conic-gradient(from 20deg, transparent 0 18%, rgb(255 255 255 / 0.14) 25%, transparent 32% 68%, rgb(255 255 255 / 0.14) 75%, transparent 82%),
+        repeating-radial-gradient(circle, #121213 0 1px, #1c1c1e 1px 2.5px);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 10px 22px -10px rgb(0 0 0 / 0.7);
+}
+
+/* 探索页：正在播放的那首歌。ExplorePlaying.tsx 把正在响的声音每帧写到它的条目上：
+   --ex-beat 是拍子，--ex-low / --ex-mid / --ex-high 是低、中、高三段的音量，都是 0…1。
+   暂停时这些变量不在，各处回到下面写的静止值。 */
+/* 两个放大量加起来，一张宽图每边多出不到 9 像素：一行图片四周只留了 8 像素。 */
+[data-explore-playing='sounding'] [data-explore-beat] {
+    scale: calc(1 + var(--ex-beat, 0) * 0.03);
+}
+
+.explore-ring {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 1.5px solid color-mix(in srgb, var(--text-primary) 60%, transparent);
+    opacity: var(--ex-beat, 0);
+    scale: calc(1 + var(--ex-beat, 0) * 0.03);
+}
+
+.explore-levels {
+    box-sizing: content-box;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 10px;
+}
+
+.explore-levels i {
+    display: block;
+    width: 3px;
+    height: 100%;
+    border-radius: 1px;
+    background: currentColor;
+    transform-origin: 50% 100%;
+    transition: transform 90ms linear;
+}
+
+.explore-levels i:nth-child(1) { transform: scaleY(calc(0.25 + var(--ex-low, 0.1) * 0.75)); }
+.explore-levels i:nth-child(2) { transform: scaleY(calc(0.25 + var(--ex-mid, 0.3) * 0.75)); }
+.explore-levels i:nth-child(3) { transform: scaleY(calc(0.25 + var(--ex-high, 0.05) * 0.75)); }
+
+:root[data-reduce-motion~='uiMicroMotion'] .explore-record,
+:root[data-reduce-motion~='uiMicroMotion'] .explore-float,
+:root[data-reduce-motion~='uiMicroMotion'] .explore-levels i {
+    transition: none;
+}
+
+/* 收藏星星：按下就是新状态，弹一下表示“记下了”。向平台发的请求在后台走，不让人等。 */
+@keyframes star-pop {
+    0% { transform: scale(0.55); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.star-pop {
+    animation: star-pop 340ms cubic-bezier(0.3, 0.7, 0.3, 1) both;
+}
+
+:root[data-reduce-motion~='uiMicroMotion'] .star-pop {
+    animation: none;
+}
+
+/* “定位正在播放的歌”按钮：按下时一圈光从按钮上散开，准星转一下落定，表示“去找了”。
+   歌单还没读完、要等后面的歌时，光圈一圈接一圈地散，直到找到或确定没有。 */
+@keyframes locate-ring {
+    from { transform: scale(1); opacity: 0.9; }
+    to { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes locate-mark {
+    from { transform: rotate(-90deg) scale(0.6); }
+    to { transform: rotate(0deg) scale(1); }
+}
+
+.locate-ring {
+    animation: locate-ring 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.locate-mark {
+    animation: locate-mark 420ms cubic-bezier(0.3, 1.3, 0.4, 1) both;
+}
+
+.locate-seeking {
+    animation: locate-ring 1100ms cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+
+:root[data-reduce-motion~='uiMicroMotion'] .locate-ring {
+    display: none;
+}
+
+:root[data-reduce-motion~='uiMicroMotion'] .locate-mark {
+    animation: none;
+}
+
+/* 不动的时候留一圈静止的光，仍然看得出还在找。 */
+:root[data-reduce-motion~='uiMicroMotion'] .locate-seeking {
+    animation: none;
+    opacity: 0.9;
+}

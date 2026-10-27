@@ -1,0 +1,17 @@
+{
+  "package": "@yakult-green-tea/qq-music-api",
+  "version": "3.3.3",
+  "source": "https://registry.npmjs.org/@yakult-green-tea/qq-music-api/-/qq-music-api-3.3.3.tgz",
+  "files": {
+    "services/recommend/songRelations.js": "306528e77d8c7785bfa8863a051b5828129c04538c86d6b30cff70631b0b58ed",
+    "services/recommend/catalog.js": "120197dfda185036203615b4c8c03a310e893c2815b56f75070c45114f6fd21f",
+    "services/recommend/guessYouLike.js": "cbbba4f7d16e904cc75d120d73d348368b665e7f791a10634af5a28e0201fdc2",
+    "protocol/evidence.js": "dfc6f69c9a4589a1f8965ab0a225de06e601973819a6b44004fad2f3eb4c3b73",
+    "protocol/businessCodes.js": "dc619ca3611750af2fd21f909c2f8d22f679e9f3c3919bc951eb416a15563082",
+    "services/auth/values.js": "02b0faecccb58cb9fd3499ee3a2349b603df47ec1b9e237cdaf2994798bcddb3",
+    "services/recommend/radio.js": "8f5549c9fe8443fce50c627d4158ec5227689413ff785ebd8b5db9015c14cd1e",
+    "protocol/errors.js": "b11e6dc798bef5ee628b810137d64722b552ceeeee5aa0b04901492d2f06f375",
+    "services/recommend/radar.js": "8241db23f81233502bc618e6a0982979e3e27b243526da73ed23c6e8b1645af2",
+    "LICENSE": "1562a639d7aeab4f9ab3a262e0c96c593b29a99b55031fd1ec8394ee6dd77727"
+  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="120 96 320 320">
+  <!-- Folia F silhouette from public/icon.svg, without its background or shadow. -->
+  <g fill="#000">
+    <path d="M160 128C160 110 175 110 190 110H220C235 110 250 125 250 140V372C250 388 235 402 220 402H190C175 402 160 388 160 372V128Z"/>
+    <path d="M240 110H340C380 110 400 140 400 170C400 200 360 200 340 200H250V110Z"/>
+    <path d="M250 240H320C350 240 360 260 360 280C360 300 340 300 320 300H250V240Z"/>
+  </g>
+</svg>

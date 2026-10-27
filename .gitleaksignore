@@ -1,0 +1,14 @@
+# Audited, non-user-specific protocol constants and checksum data.
+# Exact fingerprints keep future or moved secret-like values visible to scans.
+entry/src/main/ets/services/qishui/QishuiRuntime.js:generic-api-key:1597
+entry/src/main/ets/services/music/MusicRuntime.js:generic-api-key:11275
+entry/src/main/ets/services/music/MusicRuntime.js:generic-api-key:15630
+entry/src/main/ets/services/music/MusicRuntime.js:generic-api-key:15645
+entry/src/main/ets/services/music/MusicRuntime.js:generic-api-key:15647
+tools/music/upstream/api/weapi.js:generic-api-key:7
+tools/music/upstream/manifest.json:generic-api-key:15
+tools/verify-music-flow.mjs:generic-api-key:31
+tools/music/upstream/api/qq.js:generic-api-key:2066
+tools/music/upstream/api/kugou.js:generic-api-key:165
+tools/music/upstream/api/kugou.js:generic-api-key:182
+tools/music/upstream/api/kugou.js:generic-api-key:184

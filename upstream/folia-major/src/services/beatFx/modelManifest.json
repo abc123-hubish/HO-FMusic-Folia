@@ -1,0 +1,10 @@
+{
+  "name": "beat_this",
+  "file": "beat_this-wgsl.bin",
+  "bytes": 41102271,
+  "sha256": "6365ae5ba2e42922772da01fbfd0bde8dd20b7362a679018e78a5f251fe8a967",
+  "enables": "beatGrid",
+  "license": "MIT",
+  "upstream": "https://github.com/CPJKU/beat_this",
+  "note": "Beat This! (CPJKU, ISMIR 2024), the authors' own final0 checkpoint exported by build/beat_this_wgsl/export_weights.py --f16: BatchNorms and RMSNorm gammas folded, matmul weights fp16, everything else fp32, the tensor manifest packed into the same file. One file for both runtimes: the WebGPU path in the renderer (src/services/analysis/beatThisWgsl), for automix and 智能动感模式 alike, and the CPU fallback in the analysis worker, which builds the network over these tensors in MNN (native/folia-mnn/folia_beat_this.cpp). Beat and downbeat lists identical to the onnxruntime export on the seven test tracks, on both."
+}

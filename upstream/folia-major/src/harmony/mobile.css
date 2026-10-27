@@ -1,0 +1,259 @@
+/* Responsive host styling for the complete Web app, including portals and original visualizers. */
+html[data-harmony] {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+  font-size: 14px;
+}
+html[data-harmony] body { margin: 0; overflow: hidden; }
+html[data-harmony] #root { width: 100%; height: 100dvh; min-width: 0; }
+html[data-harmony] button, html[data-harmony] input, html[data-harmony] select { touch-action: manipulation; }
+html[data-harmony] audio { display: none; }
+html[data-harmony] .player-song-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+html[data-harmony] .player-song-actions .player-generate-ai-theme { display: none; }
+/* Fit the dialog to the available window without shrinking its text or touch targets. */
+html[data-harmony] [data-settings-overlay] {
+  --settings-viewport-gap: clamp(12px, 3vmin, 40px);
+  --settings-horizontal-gap: max(var(--settings-viewport-gap), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  /* ArkWeb keeps full-window coordinates; reserve the same safe gap on both sides. */
+  padding-top: max(var(--settings-viewport-gap), var(--harmony-window-top, 0px), var(--harmony-cutout-top, 0px), env(safe-area-inset-top, 0px));
+  padding-right: var(--settings-horizontal-gap);
+  padding-bottom: max(var(--settings-viewport-gap), env(safe-area-inset-bottom, 0px));
+  padding-left: var(--settings-horizontal-gap);
+}
+html[data-harmony] [data-settings-dialog] {
+  min-width: 0;
+  min-height: 0;
+  max-height: 100%;
+  padding: clamp(12px, 2vmin, 28px);
+}
+html[data-harmony] [data-settings-dialog][data-settings-options] {
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+}
+@media (max-width: 767px), (max-height: 500px) {
+  html[data-harmony] [data-settings-overlay] { --settings-viewport-gap: 24px; }
+}
+/* PC settings use readable type sizes without changing the phone layout or the rest of the app. */
+html[data-harmony-window] [data-settings-dialog] {
+  --text-xs: 14px;
+  --text-xs--line-height: 1.5;
+  --text-sm: 16px;
+  --text-sm--line-height: 1.5;
+  --text-base: 18px;
+  --text-base--line-height: 1.5;
+  --text-lg: 20px;
+  --text-lg--line-height: 1.4;
+  --text-xl: 24px;
+  --text-xl--line-height: 1.35;
+  font-size: 16px;
+}
+html[data-harmony-window] [data-settings-dialog] :is([class~="text-[10px]"], [class~="text-[11px]"], [class~="text-[12px]"], [class~="text-[13px]"]) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+html[data-harmony-window] [data-settings-dialog] :is(.text-xs, .text-sm, [class~="text-[10px]"], [class~="text-[11px]"], [class~="text-[12px]"], [class~="text-[13px]"]):is(.opacity-40, .opacity-50) {
+  opacity: 0.7;
+}
+html[data-harmony] [data-harmony-services] input,
+html[data-harmony] [data-harmony-services] select,
+html[data-harmony] [data-harmony-services] button:not([data-settings-toggle]) { min-height: 36px; }
+html[data-harmony] ::-webkit-scrollbar { width: 3px; height: 3px; }
+/* Fit both halves of the lyric editor inside ArkWeb, including short landscape screens. */
+html[data-harmony] .vis-playground-header { flex-shrink: 0; padding: 12px; }
+html[data-harmony] .vis-playground-body {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 2fr) minmax(0, 3fr);
+  min-width: 0;
+  gap: 12px;
+  padding: 12px;
+}
+html[data-harmony] .vis-playground-preview,
+html[data-harmony] .vis-playground-settings { min-width: 0; min-height: 0; }
+html[data-harmony] .vis-playground-settings { gap: 10px; }
+html[data-harmony] .vis-playground-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  flex-shrink: 0;
+  width: 100%;
+}
+html[data-harmony] .vis-playground-tabs button { min-width: 0; padding: 6px 4px; font-size: 12px; overflow-wrap: anywhere; }
+html[data-harmony] .vis-playground-settings-scroll { min-height: 0; overscroll-behavior: contain; }
+@media (orientation: landscape) and (min-width: 600px) {
+  html[data-harmony] .vis-playground-body {
+    grid-template-columns: minmax(0, 1fr) clamp(240px, 36vw, 360px);
+    grid-template-rows: minmax(0, 1fr);
+  }
+}
+/* Keep the audio editor inside ArkWeb's available viewport, with its close control outside the scroll area. */
+html[data-harmony] .audio-equalizer-dialog {
+  display: flex;
+  flex-direction: column;
+  max-width: min(640px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 16px;
+  overflow: hidden;
+}
+html[data-harmony] .audio-equalizer-dialog > .mb-5 { flex-shrink: 0; margin-bottom: 12px; }
+html[data-harmony] .audio-equalizer-dialog h2 { font-size: 18px; }
+html[data-harmony] .audio-equalizer-dialog p { margin-top: 4px; font-size: 12px; }
+html[data-harmony] .audio-equalizer-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+html[data-harmony] .audio-equalizer-controls { gap: 8px; margin-bottom: 12px; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-card,
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-card { padding: 12px; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-heading,
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-grid,
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-unit { min-width: 0; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-heading { flex-wrap: wrap; gap: 4px; margin-bottom: 8px; letter-spacing: 0.1em; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-grid { gap: 4px; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-band-fader { height: clamp(64px, 16dvh, 96px); }
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-card { margin-top: 12px; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-heading { margin-bottom: 8px; letter-spacing: 0.1em; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-grid label,
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-grid label > span > span:first-child { min-width: 0; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-grid label > span > span:first-child { flex-wrap: wrap; }
+html[data-harmony] .audio-equalizer-dialog .equalizer-effect-grid label > span > span:last-child { flex-shrink: 0; white-space: nowrap; }
+@media (min-width: 700px) and (max-height: 600px) {
+  html[data-harmony] .audio-equalizer-content > [data-ponder="audio-equalizer"] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
+    align-items: start;
+  }
+  html[data-harmony] .audio-equalizer-controls { grid-column: 1 / -1; }
+  html[data-harmony] .audio-equalizer-dialog .equalizer-effect-card { margin-top: 0; }
+}
+@media (max-width: 359px) {
+  html[data-harmony] .audio-equalizer-dialog .equalizer-effect-grid { grid-template-columns: minmax(0, 1fr); }
+}
+/* The quick theme editor shares the viewport limit while its header remains outside the scroll area. */
+html[data-harmony] .theme-quick-dialog {
+  --theme-quick-picker-height: clamp(120px, 30dvh, 180px);
+  display: flex;
+  max-width: min(640px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+}
+html[data-harmony] .theme-quick-frame { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; }
+html[data-harmony] .theme-quick-header { flex-shrink: 0; padding: 10px 12px; gap: 8px; }
+html[data-harmony] .theme-quick-header > div:first-child { gap: 8px; }
+html[data-harmony] .theme-quick-header > div:first-child > div:first-child { width: 32px; height: 32px; }
+html[data-harmony] .theme-quick-body,
+html[data-harmony] .theme-quick-import { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 12px; gap: 12px; }
+html[data-harmony] .theme-quick-body { grid-template-columns: minmax(0, 1fr); }
+html[data-harmony] .theme-quick-palette { display: flex; flex-direction: column; min-width: 0; gap: 10px; }
+html[data-harmony] .theme-quick-palette > * { margin-block: 0; }
+html[data-harmony] .theme-quick-modes { padding: 4px; gap: 4px; }
+html[data-harmony] .theme-quick-modes button { padding: 6px 8px; gap: 6px; }
+html[data-harmony] .theme-quick-fields { gap: 8px; }
+html[data-harmony] .theme-quick-fields > button { padding: 8px; border-radius: 12px; }
+html[data-harmony] .theme-quick-fields > button > div:first-child { gap: 6px; }
+html[data-harmony] .theme-quick-fields > button > div:first-child > span:first-child { width: 18px; height: 18px; }
+html[data-harmony] .theme-quick-fields > button > div:last-child { margin-top: 4px; }
+html[data-harmony] .theme-quick-picker,
+html[data-harmony] .theme-quick-recommended,
+html[data-harmony] .theme-quick-name { padding: 10px; border-radius: 16px; }
+html[data-harmony] .theme-quick-sidebar { gap: 10px; }
+html[data-harmony] .theme-quick-recommended > div:first-child,
+html[data-harmony] .theme-quick-name > div:first-child { margin-bottom: 8px; }
+html[data-harmony] .theme-quick-recommended > .grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+html[data-harmony] .theme-quick-recommended button { width: 28px; height: 28px; justify-self: center; border-radius: 8px; }
+html[data-harmony] .theme-quick-name input { padding: 6px 10px; }
+html[data-harmony] .theme-quick-actions { gap: 6px; padding-top: 0; }
+html[data-harmony] .theme-quick-actions > button { min-height: 34px; }
+html[data-harmony] .theme-quick-actions > div > button { min-height: 30px; }
+@media (orientation: landscape) and (min-width: 600px) {
+  html[data-harmony] .theme-quick-body { grid-template-columns: minmax(0, 1fr) minmax(180px, 220px); }
+  html[data-harmony] .theme-quick-recommended > .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 1200px) and (min-height: 700px) {
+  html[data-harmony] { font-size: 16px; }
+}
+@media (max-height: 500px) {
+  html[data-harmony] { font-size: 13px; }
+  html[data-harmony] [data-library-home-header] { padding: 12px 20px; }
+  html[data-harmony] [data-library-connect-panel] { gap: 14px; padding-block: 12px; }
+  html[data-harmony] [data-library-connect-panel] > * { margin: 0; }
+  html[data-harmony] [data-library-connect-panel] > div:first-child { width: 52px; height: 52px; border-radius: 18px; }
+  html[data-harmony] [data-library-connect-panel] > div:first-child svg { width: 26px; height: 26px; }
+  html[data-harmony] [data-settings-dialog] > .shrink-0 { margin-bottom: 12px; }
+  html[data-harmony] [data-settings-sidebar] { width: 24%; max-width: 180px; padding-right: 10px; }
+}
+@media (orientation: landscape) and (min-width: 600px) and (max-height: 600px) {
+  html[data-harmony] [data-library-home-header] { grid-template-columns: minmax(100px, 1fr) auto minmax(120px, 1fr); gap: 12px; }
+  html[data-harmony] [data-library-home-header] > * { order: 0; grid-column: auto; min-width: 0; }
+  html[data-harmony] [data-library-home-tabs] > div { transform: none; }
+  html[data-harmony] [data-library-home-tabs] button { padding-inline: 12px; min-height: 30px; }
+  html[data-harmony] [data-library-home-search] form { width: 100%; max-width: 220px; }
+}
+@media (max-width: 599px) {
+  html[data-harmony] [role="dialog"] { max-width: calc(100vw - 20px); max-height: calc(100dvh - 20px); }
+  html[data-harmony] [data-library-home-header] { padding: 12px; gap: 8px; }
+}
+
+/* Freeze CSS loops while hidden; music and its required JavaScript timers keep running. */
+html[data-harmony-background] *,
+html[data-harmony-background] *::before,
+html[data-harmony-background] *::after {
+  animation-play-state: paused !important;
+}
+
+/* PC captions are transparent native chrome. Apply their insets after phone/compact overrides. */
+html[data-harmony-window] [data-library-home-header] {
+  padding-top: calc(var(--harmony-window-top, 0px) + 16px);
+}
+html[data-harmony-window] [data-library-renderer="grid"],
+html[data-harmony-window] [data-library-home="tui"] {
+  padding-top: var(--harmony-window-top, 0px);
+}
+html[data-harmony-window] [data-harmony-window-toolbar],
+html[data-harmony-window] .lattice-back {
+  margin-top: var(--harmony-window-top, 0px);
+}
+html[data-harmony-window] [data-harmony-search-workspace] {
+  padding-top: calc(var(--harmony-window-top, 0px) + 24px);
+}
+@media (min-width: 768px) and (min-height: 501px) {
+  html[data-harmony-window] [data-library-home-header] {
+    padding-top: calc(var(--harmony-window-top, 0px) + 32px);
+  }
+}
+
+/* Use native camera bounds in fullscreen ArkWeb, without adding the header's own spacing twice. */
+@media (orientation: portrait) {
+  html[data-harmony]:not([data-harmony-window]) {
+    --harmony-portrait-top: max(var(--harmony-cutout-top, 0px), env(safe-area-inset-top, 0px));
+  }
+  html[data-harmony]:not([data-harmony-window]) [data-library-home-header] {
+    padding-top: max(var(--harmony-portrait-top), 1rem);
+  }
+  html[data-harmony]:not([data-harmony-window]) [data-library-renderer="grid"] {
+    padding-top: var(--harmony-portrait-top);
+  }
+  html[data-harmony]:not([data-harmony-window]) [data-library-home="tui"] {
+    padding-top: max(var(--harmony-portrait-top), 2rem);
+  }
+  html[data-harmony]:not([data-harmony-window]) [data-harmony-window-toolbar],
+  html[data-harmony]:not([data-harmony-window]) .lattice-back {
+    margin-top: var(--harmony-portrait-top);
+  }
+  html[data-harmony]:not([data-harmony-window]) [data-harmony-search-workspace] {
+    padding-top: max(var(--harmony-portrait-top), 1rem);
+  }
+}
+@media (orientation: portrait) and (max-width: 599px) {
+  html[data-harmony]:not([data-harmony-window]) [data-library-home-header] {
+    padding-top: max(var(--harmony-portrait-top), 12px);
+  }
+}
+@media (orientation: portrait) and (min-width: 640px) {
+  html[data-harmony]:not([data-harmony-window]) [data-harmony-search-workspace] {
+    padding-top: max(var(--harmony-portrait-top), 1.5rem);
+  }
+}
+@media (orientation: portrait) and (min-width: 768px) and (min-height: 501px) {
+  html[data-harmony]:not([data-harmony-window]) [data-library-home-header] {
+    padding-top: max(var(--harmony-portrait-top), 2rem);
+  }
+}

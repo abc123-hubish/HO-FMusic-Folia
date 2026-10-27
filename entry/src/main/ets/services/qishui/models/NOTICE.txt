@@ -1,0 +1,6 @@
+Beat This! (CPJKU, ISMIR 2024), MIT license; see beat_this-LICENSE.txt.
+Project: https://github.com/CPJKU/beat_this
+Checkpoint final0 exported to packed WGSL weights by chthollyphile/folia-major (MIT).
+Source revision: aecd330b720eb8fc728e6b10ebcec261b144d683
+Model asset: https://github.com/chthollyphile/folia-major/releases/download/models-v1/beat_this-wgsl.bin
+SHA-256: 6365ae5ba2e42922772da01fbfd0bde8dd20b7362a679018e78a5f251fe8a967

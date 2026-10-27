@@ -1,6 +1,3 @@
-* text=auto
-*.md text eol=lf
-.gitignore text eol=lf
-.gitattributes text eol=lf
-*.png binary
-*.jpg binary
+# Keep text files consistent across Windows and Linux; detect binaries automatically.
+* text=auto eol=lf
+*.sh text eol=lf

@@ -1,0 +1,11 @@
+{
+  "app": {
+    "bundleName": "com.bogdan.folia",
+    "vendor": "example",
+    "versionCode": 2000000,
+    "versionName": "2.0.0",
+    "buildVersion": "1",
+    "icon": "$media:folia_icon",
+    "label": "$string:app_name"
+  }
+}
