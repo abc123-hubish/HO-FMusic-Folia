@@ -77,7 +77,7 @@ GitHub 自动生成的 **Source code (zip / tar.gz)** 为对应标签的完整�
 ## 源码与构建
 
 - HarmonyOS 工程位于 `AppScope`、`entry` 与根目录 Hvigor 配置；内嵌 Web 应用位于 `upstream/folia-major`，构建与校验脚本位于 `tools`。
-- 仓库不包含本地签名配置、证书、私钥、API 密钥、Cookie、账号登录态、`.env.local`、`.dev-credentials` 或已生成的 HAP/APP。请从 `build-profile.example.json5` 创建自己的本地签名配置。
+- 仓库不包含本地签名配置、证书、私钥、用户配置的 API 密钥、账号 Cookie、账号登录态、`.env.local`、`.dev-credentials` 或已生成的 HAP/APP。第三方协议兼容所需的公开固定客户端常量按精确指纹审计，不属于用户凭据。请从 `build-profile.example.json5` 创建自己的本地签名配置。
 - 完整依赖安装、Web 资源生成、HAP 构建和功能边界见 [DEVELOPMENT.md](DEVELOPMENT.md)。
 - `v2.0.0` 标签对应本次公开源码；后续版本以各自标签与 Release 为准。
 
