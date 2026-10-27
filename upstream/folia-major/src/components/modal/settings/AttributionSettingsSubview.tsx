@@ -1,6 +1,8 @@
 import React from 'react';
 import { BookOpen, ExternalLink, Heart, Scale, Smartphone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import waveLightLicense from '../../visualizer/waveLight/LICENSE?raw';
+import vinylDiscLicense from '../../visualizer/vinylDisc/LICENSE?raw';
 
 // src/components/modal/settings/AttributionSettingsSubview.tsx
 // Credit the upstream project and explain the independently maintained HarmonyOS port.
@@ -53,6 +55,24 @@ const AttributionSettingsSubview: React.FC<{ settingsCardClass: string }> = ({ s
                     <Scale size={18} aria-hidden="true" />{t('options.attributionLicense')}
                 </h3>
                 <p className="text-sm leading-7 opacity-75">{t('options.attributionLicenseDesc')}</p>
+                <p className="text-sm leading-7 opacity-75">{t('options.waveLightCredit')}</p>
+                <details className="text-xs opacity-75">
+                    <summary className="cursor-pointer">Wave Light · {t('options.waveLightViewLicense')}</summary>
+                    <pre className="mt-3 whitespace-pre-wrap break-words">{waveLightLicense}</pre>
+                </details>
+                <a className={linkClass} href="https://github.com/Zhangyx0824/folia-mod-wave-light" target="_blank" rel="noopener noreferrer">
+                    <span>wave-light · Copyright (c) 2026 pomepii · MIT</span>
+                    <ExternalLink size={14} aria-hidden="true" />
+                </a>
+                <p className="text-sm leading-7 opacity-75">{t('options.vinylDiscCredit')}</p>
+                <details className="text-xs opacity-75">
+                    <summary className="cursor-pointer">Vinyl Disc · {t('options.waveLightViewLicense')}</summary>
+                    <pre className="mt-3 whitespace-pre-wrap break-words">{vinylDiscLicense}</pre>
+                </details>
+                <a className={linkClass} href="https://github.com/Zhangyx0824/folia-mod-vinyl-disc" target="_blank" rel="noopener noreferrer">
+                    <span>vinyl-disc · Copyright (c) 2026 pomepii · MIT</span>
+                    <ExternalLink size={14} aria-hidden="true" />
+                </a>
                 <a className={linkClass} href={`${UPSTREAM_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer">
                     <span>{t('options.attributionViewLicense')}</span>
                     <ExternalLink size={14} className="shrink-0" aria-hidden="true" />

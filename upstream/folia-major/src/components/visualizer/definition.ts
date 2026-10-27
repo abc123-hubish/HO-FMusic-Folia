@@ -1,4 +1,5 @@
 import type { TFunction } from 'i18next';
+import type { WaveLightTuning } from '../../types/waveLight';
 import React from 'react';
 import { type MotionValue } from 'framer-motion';
 import {
@@ -30,7 +31,7 @@ import type { VisualizerBackgroundConfig } from './backgrounds/definition';
 
 // src/components/visualizer/definition.ts
 // Shared contracts for discoverable visualizer modes.
-export type VisualizerTuningKind = 'none' | 'classic' | 'cadenza' | 'partita' | 'fume' | 'claddagh' | 'cappella' | 'tilt' | 'monet' | 'diorama' | 'pendolo' | 'sonnet' | 'tempera' | 'lumiere' | 'hanabi';
+export type VisualizerTuningKind = 'none' | 'classic' | 'cadenza' | 'partita' | 'fume' | 'claddagh' | 'cappella' | 'tilt' | 'monet' | 'diorama' | 'pendolo' | 'sonnet' | 'tempera' | 'lumiere' | 'hanabi' | 'wave-light';
 
 export interface VisualizerSharedProps {
     currentTime: MotionValue<number>;
@@ -98,11 +99,14 @@ export interface VisualizerSharedProps {
     onTemperaTuningChange?: (patch: Partial<TemperaTuning>) => void;
     lumiereTuning?: LumiereTuning;
     hanabiTuning?: HanabiTuning;
+    waveLightTuning?: WaveLightTuning;
     onLumiereTuningChange?: (patch: Partial<LumiereTuning>) => void;
     onHanabiTuningChange?: (patch: Partial<HanabiTuning>) => void;
 }
 
 export interface VisualizerSettingsPanelProps {
+    waveLightTuning?: WaveLightTuning;
+    onWaveLightTuningChange?: (patch: Partial<WaveLightTuning>) => void;
     t: (key: string) => string;
     isDaylight: boolean;
     theme: Theme;
@@ -156,6 +160,8 @@ export interface VisualizerSettingsPanelProps {
 }
 
 export interface VisualizerSettingsResetProps {
+    resetWaveLightTuning?: () => void;
+    setDraftWaveLightTuning?: (tuning: WaveLightTuning) => void;
     resetClassicTuning?: () => void;
     resetPartitaTuning?: () => void;
     resetFumeTuning?: () => void;

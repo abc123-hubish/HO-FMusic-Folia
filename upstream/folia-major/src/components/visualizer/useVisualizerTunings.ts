@@ -22,4 +22,5 @@ export const useVisualizerTunings = () => useVisualizerSettingsStore(useShallow(
     tempera: state.temperaTuning,
     lumiere: state.lumiereTuning,
     hanabi: state.hanabiTuning,
+    'wave-light': state.waveLightTuning,
 })));

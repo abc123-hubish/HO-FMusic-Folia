@@ -881,6 +881,8 @@ export default {
       "visualizer-sonnet": { "title": "Visualizer: Sonnet", "description": "Alihkan ke PV lirik Jepang Sonnet" },
       "visualizer-tempera": { "title": "Visualizer: Tempera", "description": "Alihkan ke PV lirik blok warna Tempera" },
       "visualizer-lumiere": { "title": "Visualizer: Lumiere", "description": "Alihkan ke PV lirik cahaya panggung Lumiere" },
+      "visualizer-wave-light": { "title": "Visualizer: Wave Light", "description": "Alihkan ke riak berwarna sampul dan lirik di tengah" },
+      "visualizer-vinyl-disc": { "title": "Visualizer: Vinyl Disc", "description": "Alihkan ke piringan berputar dan lirik karaoke" },
       "desktop-toggle-remote-control": { "title": "Alihkan jendela remote control", "description": "Buka atau tutup jendela remote control" },
       "desktop-toggle-main-window-always-on-top": { "title": "Alihkan jendela utama selalu di atas", "description": "Sematkan atau lepas jendela utama di atas jendela lain" },
       "background-monet-full-overlay": { "title": "Latar: Overlay Layar Penuh Monet", "description": "Alihkan latar ke tata letak overlay layar penuh Monet" },
@@ -923,6 +925,8 @@ export default {
     }
   },
   "ui": {
+    "visualizerWaveLight": "Wave Light",
+    "visualizerVinylDisc": "Vinyl Disc",
     "noTrack": "Tidak Ada Trek",
     "previousTrack": "Lagu sebelumnya",
     "nextTrack": "Lagu berikutnya",
@@ -1688,6 +1692,19 @@ export default {
     "lyricMatchPriorityDesc": "Saat beberapa sumber lirik memiliki kecocokan berkualitas tinggi, utamakan sumber ini terlebih dahulu."
   },
   "options": {
+    "waveLightSettings": "Pengaturan Wave Light",
+    "waveLightDescription": "Riak berwarna sampul, lirik di tengah dan tanda air kata kunci. Riak tetap bergerak saat dijeda di latar depan.",
+    "waveLightSource": "Palet riak",
+    "waveLightCover": "Warna sampul",
+    "waveLightTheme": "Warna tema",
+    "waveLightBrightness": "Kecerahan riak",
+    "waveLightSpeed": "Kecepatan aliran",
+    "waveLightTextScale": "Ukuran lirik",
+    "waveLightKeyword": "Tanda air kata kunci",
+    "waveLightCredit": "Wave Light diadaptasi dari mod wave-light 1.5.1 oleh pomepii (Lisensi MIT).",
+    "waveLightViewLicense": "Lihat lisensi mod · MIT",
+    "vinylDiscDescription": "Piringan berputar, cahaya sampul, lengan pemutar dan lirik karaoke. Putaran berhenti saat dijeda atau di latar belakang.",
+    "vinylDiscCredit": "Vinyl Disc diadaptasi dari mod vinyl-disc 1.7.11 oleh pomepii (Lisensi MIT).",
     "settingsRowDetails": "Detail",
     "settingsDesktopOnly": "Hanya aplikasi desktop",
     "themeQuickEditUnavailable": "Tema bawaan tidak dapat diedit",

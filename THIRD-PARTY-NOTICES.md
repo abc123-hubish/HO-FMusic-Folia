@@ -9,6 +9,8 @@ FMusic HarmonyOS 基于 Folia，并包含提供音乐平台连接、二维码、
 | KuGouMusicApi | [MakcRe/KuGouMusicApi](https://github.com/MakcRe/KuGouMusicApi) | [MIT](licenses/music/KuGouMusicApi-LICENSE) |
 | QQ Explore 组件 | 随构建提供的 qq-explore-3.3.3 组件 | [MIT](licenses/music/qq-explore-3.3.3-LICENSE) |
 | bodian-music-api | [Mintcolour/folia-major](https://github.com/Mintcolour/folia-major) 中的相关实现 | [AGPL-3.0](licenses/bodian/bodian-LICENSE)，另见 [NOTICE](licenses/bodian/bodian-NOTICE) |
+| Wave Light | [Zhangyx0824/folia-mod-wave-light](https://github.com/Zhangyx0824/folia-mod-wave-light) | [MIT](upstream/folia-major/src/components/visualizer/waveLight/LICENSE)，基于 1.5.1 适配 |
+| Vinyl Disc | [Zhangyx0824/folia-mod-vinyl-disc](https://github.com/Zhangyx0824/folia-mod-vinyl-disc) | [MIT](upstream/folia-major/src/components/visualizer/vinylDisc/LICENSE)，基于 1.7.11 适配 |
 | qrcode | 随安装包提供 | [许可原文](licenses/music/qrcode-LICENSE) |
 | fflate | 随安装包提供 | [许可原文](licenses/music/fflate-LICENSE) |
 | buffer | 随安装包提供 | [许可原文](licenses/music/buffer-LICENSE) |

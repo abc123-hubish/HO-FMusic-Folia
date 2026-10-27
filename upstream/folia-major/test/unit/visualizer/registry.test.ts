@@ -16,6 +16,8 @@ describe('visualizer registry', () => {
             'tempera',
             'lumiere',
             'hanabi',
+            'wave-light',
+            'vinyl-disc',
             'classic',
             'cadenza',
             'partita',
@@ -41,6 +43,8 @@ describe('visualizer registry', () => {
         expect(hasVisualizerMode('still')).toBe(true);
         expect(hasVisualizerMode('fume')).toBe(true);
         expect(hasVisualizerMode('missing-mode')).toBe(false);
+        expect(hasVisualizerMode('cinerama')).toBe(false);
+        expect(getVisualizerRegistryEntry('cinerama').mode).toBe('classic');
         expect(DEFAULT_VISUALIZER_MODE).toBe('classic');
     });
 

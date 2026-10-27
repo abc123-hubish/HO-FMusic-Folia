@@ -41,6 +41,8 @@ export const visualizerCommands: CommandPaletteCommand[] = [
     createVisualizerCommand('sonnet', 'Visualizer: Sonnet', 'Switch to Sonnet visualizer', ['sonnet', '商籁', '文字 pv', 'mg pv', 'vocaloid']),
     createVisualizerCommand('tempera', 'Visualizer: Tempera', 'Switch to Tempera visualizer', ['tempera', '凝彩', 'dancai', 'dc', '色块 pv', 'block pv']),
     createVisualizerCommand('lumiere', 'Visualizer: Lumiere', 'Switch to Lumiere visualizer', ['lumiere', '绘光', '光束', '舞台光', 'stage light', 'light pv']),
+    createVisualizerCommand('wave-light', 'Visualizer: Wave Light', 'Switch to cover-tinted ripples and centered lyrics', ['wave light', 'ripples', '动感波光', '水波', '波纹歌词']),
+    createVisualizerCommand('vinyl-disc', 'Visualizer: Vinyl Disc', 'Switch to spinning vinyl and word-timed lyrics', ['vinyl', 'disc', 'record', '黑胶', '唱片', '唱臂']),
     createVisualizerCommand('classic', 'Visualizer: Luminous', 'Switch to classic visualizer', ['visualizer classic', 'classic', '流光']),
     createVisualizerCommand('cadenza', 'Visualizer: Mindscape', 'Switch to cadenza visualizer', ['visualizer cadenza', 'cadenza', 'mindscape', '心象']),
     createVisualizerCommand('partita', 'Visualizer: Partita', 'Switch to partita visualizer', ['partita', '云阶']),

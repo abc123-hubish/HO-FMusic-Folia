@@ -23,6 +23,10 @@ const FALLBACK_GLYPH = (
 );
 
 const VISUALIZER_MODE_GLYPHS: Record<string, React.ReactNode> = {
+    'wave-light': (<>
+        <path d="M3 6a8 8 0 0 1 0 12M21 6a8 8 0 0 0 0 12" opacity="0.45" />
+        <path d="M3 9a4 4 0 0 1 0 6M21 9a4 4 0 0 0 0 6M9 12h6" />
+    </>),
     // 静止：三行静态歌词
     still: (
         <>

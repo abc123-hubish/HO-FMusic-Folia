@@ -1,5 +1,7 @@
 import { DEFAULT_HANABI_TUNING, type HanabiTuning } from '../types/hanabi';
 import { normalizeHanabiTuning, readStoredHanabiTuning } from '../utils/hanabiTuning';
+import { DEFAULT_WAVE_LIGHT_TUNING, type WaveLightTuning } from '../types/waveLight';
+import { normalizeWaveLightTuning, readStoredWaveLightTuning, WAVE_LIGHT_TUNING_STORAGE_KEY } from '../utils/waveLightTuning';
 // src/stores/useVisualizerSettingsStore.ts
 // Visualizer and background settings: the active mode, the background mode and URL background
 // list, opacity/frame-rate, and the fifteen per-mode tuning objects.
@@ -55,6 +57,9 @@ export type VisualizerSettingsState = {
     temperaTuning: TemperaTuning;
     lumiereTuning: LumiereTuning;
     hanabiTuning: HanabiTuning;
+    waveLightTuning: WaveLightTuning;
+    handleSetWaveLightTuning: (patch: Partial<WaveLightTuning>) => void;
+    handleResetWaveLightTuning: () => void;
     handleToggleDisableVisualizerVignette: (disable: boolean) => void;
     handleToggleDisableVisualizerGeometricBackground: (disable: boolean) => void;
     handleSetBackgroundOpacity: (opacity: number) => void;
@@ -146,6 +151,15 @@ export const useVisualizerSettingsStore = create<VisualizerSettingsState>((set, 
     temperaTuning: readStoredTemperaTuning(),
     lumiereTuning: readStoredLumiereTuning(),
     hanabiTuning: readStoredHanabiTuning(),
+    waveLightTuning: readStoredWaveLightTuning(),
+    handleSetWaveLightTuning: patch => {
+        const next = normalizeWaveLightTuning({ ...get().waveLightTuning, ...patch });
+        if (typeof window !== 'undefined') localStorage.setItem(WAVE_LIGHT_TUNING_STORAGE_KEY, JSON.stringify(next));
+        set({ waveLightTuning: next });
+    },
+    handleResetWaveLightTuning: () => {
+        get().handleSetWaveLightTuning(DEFAULT_WAVE_LIGHT_TUNING);
+    },
     handleToggleDisableVisualizerVignette: (disable) => {
         setStoredBoolean('disable_visualizer_vignette', disable);
         set({ disableVisualizerVignette: disable });
@@ -921,6 +935,9 @@ export const selectVisualizerSettingsSnapshot = (state: VisualizerSettingsState)
     latentBackgroundTuning: state.latentBackgroundTuning,
     lumiereTuning: state.lumiereTuning,
     hanabiTuning: state.hanabiTuning,
+    waveLightTuning: state.waveLightTuning,
+    handleSetWaveLightTuning: state.handleSetWaveLightTuning,
+    handleResetWaveLightTuning: state.handleResetWaveLightTuning,
     monetBackgroundTuning: state.monetBackgroundTuning,
     monetTuning: state.monetTuning,
     nomandBackgroundTuning: state.nomandBackgroundTuning,

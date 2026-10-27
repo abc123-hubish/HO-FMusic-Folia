@@ -16,6 +16,7 @@ import type {
     VisualizerMode,
 } from '../../types';
 import type { VisualizerSharedProps } from './definition';
+import type { WaveLightTuning } from '../../types/waveLight';
 
 // src/components/visualizer/tuningRegistry.ts
 // Pure-data registry for transporting heterogeneous visualizer tuning without importing renderers.
@@ -34,6 +35,7 @@ export interface VisualizerTuningMap {
     tempera: TemperaTuning;
     lumiere: LumiereTuning;
     hanabi: HanabiTuning;
+    'wave-light': WaveLightTuning;
 }
 
 export type VisualizerTuningMode = keyof VisualizerTuningMap;

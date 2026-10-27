@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { DEFAULT_CADENZA_TUNING, Line } from '../../../types';
 import { getLineRenderEndTime } from '../../../utils/lyrics/renderHints';
 import { colorWithAlpha, mixColors } from '../colorMix';
-import { isGlowBlurQuantized } from '../../../utils/glowBlurQuantize';
 import { prepareActiveAndUpcoming, useVisualizerRuntime } from '../runtime';
 import { type VisualizerSharedProps } from '../definition';
 import VisualizerShell from '../VisualizerShell';
@@ -429,10 +428,9 @@ const VisualizerCadenza: React.FC<VisualizerProps> = (props) => {
 
                     writeOverlayWord(overlayWord, {
                         outerTransform: `translate3d(${overlayAnchorX}px, ${overlayAnchorY}px, 0) rotate(${animatedState.rotation}deg) scale(${animatedState.scale})`,
-                        // Own compositing layer while Lab > Fix lyric animation freeze on Linux is on: otherwise every
-                        // new scale re-rasterizes the word and its 40px text-shadow at a new device size, and Chromium's
-                        // glyph cache leaks shared memory for each one. See utils/glowBlurQuantize.ts.
-                        willChange: isGlowBlurQuantized() ? 'transform' : '',
+                        // Keep the scaled word and its fixed glow on one compositing layer on every platform.
+                        // Re-rasterizing the shadow at each new size wastes work and leaks glyph-cache memory on Linux.
+                        willChange: 'transform',
                         font: preparedState.font,
                         innerTransform: `translate3d(${overlayOffsetX}px, ${overlayOffsetY}px, 0)`,
                         text: placement.text,

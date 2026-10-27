@@ -15,7 +15,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 ## 功能亮点
 
-- **沉浸式歌词**：包含全新「花火」在内的多种全屏歌词动画、逐字歌词与动态背景，花火支持画质和视觉效果调节。
+- **沉浸式歌词**：提供花火、动感波光、黑胶唱片等多种全屏歌词动画、逐字歌词与动态背景，并支持按模式调节视觉效果。
 - **本地音乐**：通过系统文件选择器导入音频，支持同名歌词与封面，导入内容可在重启后继续读取。
 - **多平台服务**：提供网易云音乐、QQ 音乐、酷狗音乐、波点音乐与汽水音乐等入口，支持搜索、歌单和账号登录；具体能力取决于平台及服务配置。
 - **智能动感模式**：分析完整歌曲的节拍并缓存结果，让花火、商籁和镜台跟随真实拍点；支持 WebGPU 模型与 CPU 兼容检测。
@@ -48,13 +48,13 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 ## 下载与安装
 
-当前发布版本：**2.0.0**。本次更新新增汽水音乐、智能动感模式和统一账号登录窗口，并优化歌词样式实时预览、后台动画休眠、AI 歌词分词与在线曲库稳定性，详见 [更新记录](CHANGELOG.md)。
+当前发布版本：**2.0.1**。本次更新新增「动感波光」和「黑胶唱片」两种歌词可视化，并优化歌词辉光渲染、在线合集缓存与 QQ 歌单版本识别，详见 [更新记录](CHANGELOG.md)。
 
 | 项目 | 说明 |
 | --- | --- |
 | 系统要求 | HarmonyOS 6.1.0（API 23）及以上，以设备实际兼容情况为准 |
-| HAP 安装包 | `FMusic-HarmonyOS-2.0.0-signed.hap`，用于设备安装 |
-| APP 发布包 | 下载 `FMusic-HarmonyOS-2.0.0-APP.zip`，解压获得 `FMusic-HarmonyOS-2.0.0-signed.app` |
+| HAP 安装包 | `FMusic-HarmonyOS-2.0.1-signed.hap`，用于设备安装 |
+| APP 发布包 | 下载 `FMusic-HarmonyOS-2.0.1-APP.zip`，解压获得 `FMusic-HarmonyOS-2.0.1-signed.app` |
 | 包名 | `com.bogdan.folia` |
 | 签名 | Release 签名 |
 | 文件校验 | Release 附带 `SHA256SUMS.txt`，校验 HAP 与 APP ZIP；ZIP 内另附原始 APP 的校验文件 |
@@ -63,7 +63,7 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 2. 使用设备支持的 HAP 安装方式安装。已配置开发工具并连接设备时，可执行：
 
    ```sh
-   hdc install -r FMusic-HarmonyOS-2.0.0-signed.hap
+   hdc install -r FMusic-HarmonyOS-2.0.1-signed.hap
    ```
 
 3. 启动 FMusic，导入本地音乐，或按需配置并登录在线音乐服务。
@@ -72,14 +72,14 @@ FMusic 是基于 [Folia](https://github.com/chthollyphile/folia-major) 适配的
 
 GitHub 自动生成的 **Source code (zip / tar.gz)** 为对应标签的完整公开源码快照，不是可直接安装的应用。安装应用请下载 `.hap` 附件。
 
-需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-2.0.0-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
+需要 `.app` 格式时，请下载同一 Release 中的 `FMusic-HarmonyOS-2.0.1-APP.zip`。GitHub 不接受直接上传 `.app` 扩展名的附件，因此以 ZIP 封装，解压后的 APP 与原始签名发布包逐字节一致；ZIP 内附 `APP-SHA256SUMS.txt`。APP 用于需要发布归档的分发或上架流程，不使用上面的 HAP 安装命令直接安装。
 
 ## 源码与构建
 
 - HarmonyOS 工程位于 `AppScope`、`entry` 与根目录 Hvigor 配置；内嵌 Web 应用位于 `upstream/folia-major`，构建与校验脚本位于 `tools`。
 - 仓库不包含本地签名配置、证书、私钥、用户配置的 API 密钥、账号 Cookie、账号登录态、`.env.local`、`.dev-credentials` 或已生成的 HAP/APP。第三方协议兼容所需的公开固定客户端常量按精确指纹审计，不属于用户凭据。请从 `build-profile.example.json5` 创建自己的本地签名配置。
 - 完整依赖安装、Web 资源生成、HAP 构建和功能边界见 [DEVELOPMENT.md](DEVELOPMENT.md)。
-- `v2.0.0` 标签对应本次公开源码；后续版本以各自标签与 Release 为准。
+- `v2.0.1` 标签对应本次公开源码；后续版本以各自标签与 Release 为准。
 
 ## 使用说明
 
@@ -91,6 +91,7 @@ GitHub 自动生成的 **Source code (zip / tar.gz)** 为对应标签的完整�
 - **AI 歌词分词**：手动 AI 分词直接使用已保存的 AI 服务配置，不要求开启自动 AI 主题生成。
 - **汽水音乐**：使用抖音扫码登录；支持搜索、推荐、最近播放、喜欢歌曲与自建歌单。VIP 歌曲目前仅能播放平台提供的试听片段，暂不支持会员高音质，登录稳定性仍受平台接口影响。
 - **智能动感模式**：仅分析可取得的完整音频并缓存拍点，试听片段不参与；后台、静态模式或不支持的歌词样式下会暂停分析。
+- **动感波光与黑胶唱片**：可从歌词样式中选择；动感波光支持配色、亮度、速度、字号与关键字水印调节，黑胶唱片会在暂停或退到后台时停止旋转。
 - **应用接续**：双端安装支持接续的版本、登录同一华为账号并开启系统「多设备协同 → 接续」后，可通过系统接续入口迁移播放状态；本地音频需提前导入目标设备，实际双设备体验尚待实机验证。
 - **QQ 试听**：仅播放平台实际提供的试听片段，并显示试听提示；歌词会按片段起点同步，试听能力不改变完整歌曲的播放权限。
 - **平台权限**：在线音乐的播放、账号权限与地区限制由对应平台决定，登录不会改变平台原有权限。

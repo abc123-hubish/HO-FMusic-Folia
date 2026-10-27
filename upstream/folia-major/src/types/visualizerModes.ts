@@ -28,6 +28,8 @@ export const BUILTIN_VISUALIZER_MODES = [
     'still',
     'tempera',
     'tilt',
+    'wave-light',
+    'vinyl-disc',
 ] as const;
 
 export const BUILTIN_VISUALIZER_BACKGROUND_MODES = [

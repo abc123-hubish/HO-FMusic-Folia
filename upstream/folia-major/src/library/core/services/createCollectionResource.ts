@@ -3,7 +3,7 @@ import type { LibraryCollectionDescriptor } from '../contracts/collection';
 import type { CollectionResource } from '../contracts/resource';
 import { collectionKey, isCloudDriveCollection } from '../model/collectionIdentity';
 import { omni } from '../../../services/onlineMusic/omni';
-import { readOnlineTracksCache, writeOnlineTracksCache } from './onlineCollectionCache';
+import { readOnlineTracksCache, resolveOnlineTracksTargetTime, writeOnlineTracksCache } from './onlineCollectionCache';
 import { createOnlineCollectionResource, type OnlineCollectionResourceDeps } from './onlineCollectionResource';
 import { createNavidromeCollectionResource } from './navidromeCollectionResource';
 import { resolveNavidromeServerScope } from './navidromeCollectionTracks';
@@ -23,15 +23,16 @@ const onlineDeps: OnlineCollectionResourceDeps = {
 };
 
 /**
- * 资源的身份：云盘和汽水的私人集合按账号区分，Navidrome 按服务器与账号区分。
- * 其余在线集合沿用原有身份，避免用户信息晚到时重建资源。
+ * 云盘、汽水私人集合与无版本在线集合按账号隔离，Navidrome 按服务器与账号隔离。
+ * 有版本的普通在线集合保留原有身份，避免用户信息晚到时重建资源。
  */
 export const resolveCollectionResourceKey = (
     descriptor: LibraryCollectionDescriptor,
     currentUserId?: MediaId | null,
 ): string => {
     const base = collectionKey(descriptor);
-    if (descriptor.source === 'online' && (isCloudDriveCollection(descriptor) || descriptor.providerId === 'qishui')) {
+    if (descriptor.source === 'online' && (isCloudDriveCollection(descriptor) || descriptor.providerId === 'qishui'
+        || resolveOnlineTracksTargetTime(descriptor) <= 0)) {
         return `${base}|u:${currentUserId ?? 'anonymous'}`;
     }
     if (descriptor.source === 'navidrome') {

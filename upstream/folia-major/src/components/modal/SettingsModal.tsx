@@ -360,6 +360,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
         handleResetTemperaTuning: onResetTemperaTuning,
         handleSetLumiereTuning: onLumiereTuningChange,
         handleSetHanabiTuning: onHanabiTuningChange,
+        handleSetWaveLightTuning: onWaveLightTuningChange,
+        handleResetWaveLightTuning: onResetWaveLightTuning,
         handleResetLumiereTuning: onResetLumiereTuning,
         handleResetHanabiTuning: onResetHanabiTuning,
         handleUploadMonetBackgroundImage: onUploadMonetBackgroundImage,
@@ -400,6 +402,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
         temperaTuning,
         lumiereTuning,
         hanabiTuning,
+        waveLightTuning,
         urlBackgroundList,
         urlBackgroundSelectedId,
     } = useVisualizerSettingsStore(useShallow(selectVisualizerSettingsSnapshot));
@@ -2100,6 +2103,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                         temperaTuning={temperaTuning}
                         lumiereTuning={lumiereTuning}
                         hanabiTuning={hanabiTuning}
+                        waveLightTuning={waveLightTuning}
+                        onWaveLightTuningChange={onWaveLightTuningChange}
+                        onResetWaveLightTuning={onResetWaveLightTuning}
                         cappellaCustomEmojiImages={cappellaCustomEmojiImages}
                         cappellaCustomAvatarImages={cappellaCustomAvatarImages}
                         monetPortraitImage={monetPortraitImage}
@@ -2197,6 +2203,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             tempera: temperaTuning,
                             lumiere: lumiereTuning,
                             hanabi: hanabiTuning,
+                            'wave-light': waveLightTuning,
                         }}
                         staticMode={staticMode}
                         visualizerOpacity={visualizerOpacity}

@@ -1,0 +1,41 @@
+/* src/components/visualizer/waveLight/waveLight.css
+ * Motion adapted from wave-light 1.5.1, Copyright (c) 2026 pomepii (MIT). */
+.wave-light-stage { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.wave-light-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wave-light-canvas-host { position: absolute; inset: 0; contain: strict; }
+.wave-light-keyword { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    white-space: nowrap; line-height: 1; user-select: none; filter: blur(var(--wave-keyword-blur));
+    animation: wave-light-keyword-in .55s cubic-bezier(.2,.8,.3,1) both; }
+.wave-light-line-position { position: absolute; inset: 0; display: flex; align-items: center;
+    justify-content: center; padding: 0 7%; box-sizing: border-box; }
+.wave-light-line { max-width: 100%; text-align: center; text-wrap: balance; line-height: 1.3;
+    overflow-wrap: anywhere; text-shadow: 0 1px 18px rgba(0,0,0,.22); }
+.wave-light-token { display: inline-block; max-width: 100%; white-space: pre-wrap;
+    animation: wave-light-token-in .52s cubic-bezier(.2,.8,.3,1) both; }
+.wave-light-glyph { position: relative; display: inline-block; white-space: pre; opacity: .5;
+    transform: translateY(0) scale(1); transform-origin: 50% 70%; }
+.wave-light-glyph-ghost { position: absolute; inset: 0; pointer-events: none; color: var(--wave-sung-accent);
+    opacity: 0; transform: translateY(0) scale(1);
+    text-shadow: 0 0 .08em currentColor, 0 0 .22em currentColor; }
+.wave-light-glyph-ghost::after { content: attr(data-wave-char); }
+.wave-light-glyph-live,
+.wave-light-glyph-live > .wave-light-glyph-ghost { will-change: transform, opacity; }
+.wave-light-translation { position: absolute; left: 50%; transform: translate(-50%,-50%);
+    width: max-content; max-width: 80%; text-align: center; line-height: 1.5; overflow-wrap: anywhere;
+    text-shadow: 0 1px 8px rgba(0,0,0,.35); animation: wave-light-fade-in .5s ease-out both; }
+.wave-light-stage[data-wave-light-static="true"] .wave-light-token,
+.wave-light-stage[data-wave-light-static="true"] .wave-light-keyword,
+.wave-light-stage[data-wave-light-static="true"] .wave-light-translation { animation: none; }
+.wave-light-stage[data-wave-light-visible="false"] * { animation-play-state: paused; }
+@keyframes wave-light-keyword-in {
+    from { opacity: 0; transform: translate(-50%,-50%) scale(1.06); filter: blur(18px); }
+    to { opacity: 1; transform: translate(-50%,-50%) scale(1); filter: blur(var(--wave-keyword-blur)); }
+}
+@keyframes wave-light-token-in {
+    from { opacity: 0; filter: blur(14px); transform: translateX(var(--wave-dx,0em)); }
+    to { opacity: 1; filter: blur(0); transform: translateX(0); }
+}
+@keyframes wave-light-fade-in { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) {
+    .wave-light-token, .wave-light-keyword, .wave-light-translation { animation: none; }
+}

@@ -18,8 +18,6 @@ __pycache__/
 /build/
 /entry/build/
 /entry/src/main/resources/rawfile/folia/
-/entry/src/main/ets/services/bodian/models/*.bin
-/entry/src/main/ets/services/qishui/models/*.bin
 
 # Web, native helper and verification outputs
 dist/
@@ -28,14 +26,11 @@ dist-ssr/
 dev-dist/
 dist-runtime/
 release/
-/.release/
 test-results/
 playwright-report/
 coverage/
 target/
 /verification/
-/HARMONY_*.md
-/fmusic-privacy/
 *.log
 *.tsbuildinfo
 *.hap
@@ -71,3 +66,12 @@ target/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Public-source exclusions and local privacy audit output
+/entry/src/main/ets/services/bodian/models/*.bin
+/entry/src/main/ets/services/qishui/models/*.bin
+/HARMONY_*.md
+/fmusic-privacy/
+/.release/
+*.sarif
+*.gitleaks.json

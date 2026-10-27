@@ -1,4 +1,5 @@
 import { DEFAULT_HANABI_TUNING } from '../../types/hanabi';
+import { DEFAULT_WAVE_LIGHT_TUNING, type WaveLightTuning } from '../../types/waveLight';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useMotionValue, useMotionValueEvent } from 'framer-motion';
 import { ChevronLeft, Loader2, Pause, Play, Search, Sparkles, Upload, X } from 'lucide-react';
@@ -95,6 +96,9 @@ interface VisPlaygroundProps {
     temperaTuning?: TemperaTuning;
     lumiereTuning?: LumiereTuning;
     hanabiTuning?: HanabiTuning;
+    waveLightTuning?: WaveLightTuning;
+    onWaveLightTuningChange?: (patch: Partial<WaveLightTuning>) => void;
+    onResetWaveLightTuning?: () => void;
     cappellaCustomEmojiImages?: CappellaEmojiImage[];
     cappellaCustomAvatarImages?: CappellaAvatarImage[];
     monetPortraitImage?: MonetPortraitImage | null;
@@ -300,6 +304,9 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
     temperaTuning = DEFAULT_TEMPERA_TUNING,
     lumiereTuning = DEFAULT_LUMIERE_TUNING,
     hanabiTuning = DEFAULT_HANABI_TUNING,
+    waveLightTuning = DEFAULT_WAVE_LIGHT_TUNING,
+    onWaveLightTuningChange,
+    onResetWaveLightTuning,
     cappellaCustomEmojiImages = [],
     cappellaCustomAvatarImages = [],
     monetPortraitImage = null,
@@ -425,6 +432,7 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
     const [draftTemperaTuning, setDraftTemperaTuning] = useState<TemperaTuning>(temperaTuning);
     const [draftLumiereTuning, setDraftLumiereTuning] = useState<LumiereTuning>(lumiereTuning);
     const [draftHanabiTuning, setDraftHanabiTuning] = useState<HanabiTuning>(hanabiTuning);
+    const [draftWaveLightTuning, setDraftWaveLightTuning] = useState<WaveLightTuning>(waveLightTuning);
     const [activeEditSection, setActiveEditSection] = useState<VisPlaygroundEditSection>(initialEditSection);
     const fontListRef = React.useRef<HTMLDivElement>(null);
     const fontVirtualListRef = useListRef(null);
@@ -542,7 +550,8 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
         tempera: previewTemperaTuning,
         lumiere: draftLumiereTuning,
         hanabi: draftHanabiTuning,
-    }), [cadenzaTuning, cappellaTuning, draftClassicTuning, draftDioramaTuning, draftLumiereTuning, draftHanabiTuning, draftMonetTuning, draftPendoloTuning, draftSonnetTuning, draftTiltTuning, previewTemperaTuning, resolvedCladdaghTuning, resolvedFumeTuning, resolvedPartitaTuning]);
+        'wave-light': draftWaveLightTuning,
+    }), [cadenzaTuning, cappellaTuning, draftClassicTuning, draftDioramaTuning, draftLumiereTuning, draftHanabiTuning, draftWaveLightTuning, draftMonetTuning, draftPendoloTuning, draftSonnetTuning, draftTiltTuning, previewTemperaTuning, resolvedCladdaghTuning, resolvedFumeTuning, resolvedPartitaTuning]);
     const currentFontLabel = customFontLabel || customFontFamily || t('options.customFont');
     const fontStyleOptions: PresetOption<Theme['fontStyle'] | 'custom'>[] = useMemo(() => ([
         ...builtinFontOptions,
@@ -594,6 +603,7 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
     useEffect(() => { setDraftTemperaTuning(temperaTuning); }, [temperaTuning]);
     useEffect(() => { setDraftLumiereTuning(lumiereTuning); }, [lumiereTuning]);
     useEffect(() => { setDraftHanabiTuning(hanabiTuning); }, [hanabiTuning]);
+    useEffect(() => { setDraftWaveLightTuning(waveLightTuning); }, [waveLightTuning]);
     useEffect(() => { setActiveEditSection(initialEditSection); }, [initialEditSection]);
 
     useVisPlaygroundPreviewPlayback({
@@ -656,6 +666,8 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
             resetTemperaTuning: onResetTemperaTuning,
             resetLumiereTuning: onResetLumiereTuning,
             resetHanabiTuning: onResetHanabiTuning,
+            resetWaveLightTuning: onResetWaveLightTuning,
+            setDraftWaveLightTuning,
             setDraftFumeTuning,
             setDraftCladdaghTuning,
             setDraftPendoloTuning,
@@ -1041,6 +1053,12 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
         }
     };
 
+    const handleWaveLightTuningDraft = (patch: Partial<WaveLightTuning>) => {
+        setDraftWaveLightTuning(prev => ({ ...prev, ...patch }));
+        if (!isDraggingSlider.current) onWaveLightTuningChange?.(patch);
+        else pendingCommitRef.current = () => onWaveLightTuningChange?.(patch);
+    };
+
     const handleResetSubtitleSettings = () => {
         setDraftSubtitleOverlayOpacity(0.6);
         setDraftSubtitleFontScale(1);
@@ -1311,6 +1329,8 @@ const VisPlayground: React.FC<VisPlaygroundProps> = ({
                         onTemperaTuningChange={handleTemperaTuningDraft}
                         lumiereTuning={draftLumiereTuning}
                         hanabiTuning={draftHanabiTuning}
+                        waveLightTuning={draftWaveLightTuning}
+                        onWaveLightTuningChange={handleWaveLightTuningDraft}
                         onLumiereTuningChange={handleLumiereTuningDraft}
                         onHanabiTuningChange={handleHanabiTuningDraft}
                         onResetMonetTuning={onResetMonetTuning}

@@ -16,6 +16,7 @@ describe('visualizer tuning registry', () => {
             'classic',
             'diorama',
             'fume',
+            'hanabi',
             'lumiere',
             'monet',
             'partita',
@@ -23,6 +24,7 @@ describe('visualizer tuning registry', () => {
             'sonnet',
             'tempera',
             'tilt',
+            'wave-light',
         ]);
     });
 

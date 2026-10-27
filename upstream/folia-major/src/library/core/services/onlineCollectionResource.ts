@@ -37,6 +37,8 @@ export type OnlineCollectionResourceDeps = {
     writeCache: (cacheKey: string, tracks: SongResult[], snapshotTime: number, progress?: OnlineTracksCacheProgress) => Promise<void>;
     /** 补页间隔与重试退避用的等待；单测里换成立即返回。 */
     wait?: (ms: number) => Promise<void>;
+    /** Injectable clock for unversioned in-memory reuse; page loads never extend the deadline. */
+    now?: () => number;
 };
 
 const toLoadError = (error: unknown): CollectionLoadError => (
@@ -44,6 +46,8 @@ const toLoadError = (error: unknown): CollectionLoadError => (
         ? { kind: 'not-public' }
         : { kind: 'generic', message: error instanceof Error ? error.message : String(error) }
 );
+
+export const UNVERSIONED_COLLECTION_REUSE_MS = 5 * 60 * 1000;
 
 const isPersonalFm = (collection: OnlineGridViewCollectionDescriptor) => collection.type === 'radio' && collection.id === 'personal_fm';
 const isDailyRecommendations = (collection: OnlineGridViewCollectionDescriptor) => collection.type === 'daily_recommendations';
@@ -55,6 +59,8 @@ export const createOnlineCollectionResource = (key: string, deps: OnlineCollecti
     let started = false;
     let disposed = false;
     let loading = false;
+    const now = deps.now ?? Date.now;
+    let reusableUntil = 0;
     /** 首页加载与重新加载的代数；补页另有自己的代数。 */
     let loadGeneration = 0;
     let syncGeneration = 0;
@@ -151,6 +157,7 @@ export const createOnlineCollectionResource = (key: string, deps: OnlineCollecti
         syncGeneration += 1;
         pausedSyncOffset = null;
         loading = true;
+        reusableUntil = 0;
         state.set({
             status: 'loading',
             error: null,
@@ -201,6 +208,7 @@ export const createOnlineCollectionResource = (key: string, deps: OnlineCollecti
                 state.set({ detail: { ...(state.get().detail ?? collection), trackCount: total } }, 'urgent');
             }
             loading = false;
+            reusableUntil = now() + UNVERSIONED_COLLECTION_REUSE_MS;
             if (responseTracks.length === 0 && !hasMore) {
                 upstreamOffset = 0;
                 state.set({ status: 'ready', tracks: [] }, 'urgent');
@@ -269,10 +277,14 @@ export const createOnlineCollectionResource = (key: string, deps: OnlineCollecti
             return !disposed
                 && next.source === 'online'
                 && collectionRevision(next) === revision
-                && (targetTime > 0 || (tombstones.size === 0 && isOnlineTracksCacheValid({
-                    tracks, snapshotTime: 0, schemaVersion: ONLINE_TRACKS_CACHE_SCHEMA_VERSION,
-                    ...cacheProgress(upstreamOffset, pausedSyncOffset !== null || sync.status !== 'none', detail?.trackCount),
-                }, targetTime, next)))
+                && tombstones.size === 0
+                && (targetTime > 0 || (supportsTimedCollectionCache(next)
+                    // Preserve Qishui's existing disk-cache TTL and mutation invalidation.
+                    ? isOnlineTracksCacheValid({
+                        tracks, snapshotTime: 0, schemaVersion: ONLINE_TRACKS_CACHE_SCHEMA_VERSION,
+                        ...cacheProgress(upstreamOffset, pausedSyncOffset !== null || sync.status !== 'none', detail?.trackCount),
+                    }, targetTime, next)
+                    : (next.type === 'playlist' || next.type === 'album') && now() < reusableUntil))
                 && (status === 'ready' || sync.status === 'interrupted');
         },
         pause: () => {
@@ -319,6 +331,7 @@ export const createOnlineCollectionResource = (key: string, deps: OnlineCollecti
             return true;
         },
         replaceAll: async (loadAll) => {
+            reusableUntil = 0;
             const generation = ++loadGeneration;
             syncGeneration += 1;
             loading = true;

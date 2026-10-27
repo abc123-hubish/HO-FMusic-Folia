@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import type { WaveLightTuning } from '../../types/waveLight';
 import { AlertTriangle, CaptionsOff, Focus, Monitor, PanelTop, RotateCcw, type LucideIcon } from 'lucide-react';
 import {
     type CappellaAvatarImage,
@@ -116,6 +117,8 @@ interface VisPlaygroundSettingsPanelProps {
     onTemperaTuningChange?: (patch: Partial<TemperaTuning>) => void;
     lumiereTuning?: LumiereTuning;
     hanabiTuning?: HanabiTuning;
+    waveLightTuning?: WaveLightTuning;
+    onWaveLightTuningChange?: (patch: Partial<WaveLightTuning>) => void;
     onLumiereTuningChange?: (patch: Partial<LumiereTuning>) => void;
     onHanabiTuningChange?: (patch: Partial<HanabiTuning>) => void;
     cappellaTuning: CappellaTuning;
@@ -392,6 +395,8 @@ const VisPlaygroundSettingsPanel: React.FC<VisPlaygroundSettingsPanelProps> = (p
         onTemperaTuningChange,
         lumiereTuning,
         hanabiTuning,
+        waveLightTuning,
+        onWaveLightTuningChange,
         onLumiereTuningChange,
         onHanabiTuningChange,
         monetPortraitImage,
@@ -769,6 +774,8 @@ const VisPlaygroundSettingsPanel: React.FC<VisPlaygroundSettingsPanelProps> = (p
                             onTemperaTuningChange,
                             lumiereTuning,
                             hanabiTuning,
+                            waveLightTuning,
+                            onWaveLightTuningChange,
                             onLumiereTuningChange,
                             onHanabiTuningChange,
                             monetPortraitImage,
